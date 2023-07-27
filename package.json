@@ -1,0 +1,12 @@
+{
+  "name": "async-js-war",
+  "version": "1.0.0",
+  "description": "A simple War card game practicing asynchronous Js while using the Deck of Cards API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
