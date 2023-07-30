@@ -36,12 +36,10 @@ function renderCards(data) {
     const cardContainer = document.querySelector('.cards-container')
         let imageOne = data.cards[0].image;
         let imageTwo = data.cards[1].image;
-        let cardSuitOne = data.cards[0].suit
-        let cardSuitTwo = data.cards[1].suit
         let cardHtml = `
-        <h2>${cardSuitOne}</h2>
+        <h2>${data.cards[0].suit}</h2>
         <img src="${imageOne}">
-        <h2>${cardSuitTwo}</h2>
+        <h2>${data.cards[1].suit}</h2>
         <img src="${imageTwo}">
         `
         cardContainer.innerHTML = cardHtml
