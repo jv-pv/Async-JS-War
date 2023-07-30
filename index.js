@@ -10,9 +10,7 @@ function fetchDeck() {
         return response.json()
     })
     .then(data => {
-        console.log(data)
         deckId = data.deck_id
-        console.log(deckId)
     })
 }
 
@@ -30,17 +28,55 @@ function handleDrawClick() {
         })
 }
 
-// I did it using array indexes instead of a for loop because I will only be using 2 cards.
+// With for loop and element.children
 
 function renderCards(data) {
-    const cardContainer = document.querySelector('.cards-container')
-        let imageOne = data.cards[0].image;
-        let imageTwo = data.cards[1].image;
-        let cardHtml = `
-        <h2>${data.cards[0].suit}</h2>
-        <img src="${imageOne}">
-        <h2>${data.cards[1].suit}</h2>
-        <img src="${imageTwo}">
+    const cardContainer = document.querySelector('.cards-container');
+    const cardContainerChildren = cardContainer.children;
+    for (let i = 0; i < data.cards.length; i++) {
+        cardContainerChildren[i].innerHTML = `
+        <img src="${data.cards[i].image}">
         `
-        cardContainer.innerHTML = cardHtml
+        cardContainerChildren[i].classList.remove('card')
+        cardContainerChildren[i].classList.add('active')
+    }
+    getWinner(data.cards[0].value, data.cards[1].value)
 }
+
+function getWinner(slot1Value, slot2Value) {
+    const cardValues = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "JACK", "QUEEN", "KING", "ACE"]
+    const slot1IndexValue = cardValues.indexOf(slot1Value)
+    const slot2IndexValue = cardValues.indexOf(slot2Value)
+
+    slot1IndexValue === slot2IndexValue ? console.log("DRAW!")
+    : slot1IndexValue > slot2IndexValue ? console.log(slot1Value ,"Slot 1 Wins!")
+    : console.log(slot2IndexValue, "Slot 2 Wins")
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// I did it using array indexes instead of a for loop because I will only be using 2 cards.
+
+// function renderCards(data) {
+//     const cardContainer = document.querySelector('.cards-container')
+//         let imageOne = data.cards[0].image;
+//         let imageTwo = data.cards[1].image;
+//         let cardHtml = `
+//         <h2>${data.cards[0].suit}</h2>
+//         <img src="${imageOne}">
+//         <h2>${data.cards[1].suit}</h2>
+//         <img src="${imageTwo}">
+//         `
+//         cardContainer.innerHTML = cardHtml
+// }
