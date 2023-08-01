@@ -132,3 +132,8 @@ button.draw {
 .cards-container h2 {
     color: var(--white);
 }
+
+.winner-banner {
+    color: var(--white);
+    text-align: center;
+}

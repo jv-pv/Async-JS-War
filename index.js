@@ -47,10 +47,11 @@ function getWinner(slot1Value, slot2Value) {
     const cardValues = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "JACK", "QUEEN", "KING", "ACE"]
     const slot1IndexValue = cardValues.indexOf(slot1Value)
     const slot2IndexValue = cardValues.indexOf(slot2Value)
+    const winnerBannerEl = document.querySelector('.winner-banner')
 
-    slot1IndexValue === slot2IndexValue ? console.log("DRAW!")
-    : slot1IndexValue > slot2IndexValue ? console.log(slot1Value ,"Slot 1 Wins!")
-    : console.log(slot2IndexValue, "Slot 2 Wins")
+    slot1IndexValue === slot2IndexValue ? winnerBannerEl.textContent = "War!"
+    : slot1IndexValue > slot2IndexValue ? winnerBannerEl.textContent = "Slot 1 Wins!"
+    : winnerBannerEl.textContent = "Slot 2 Wins"
 }
 
 
