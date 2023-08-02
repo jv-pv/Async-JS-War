@@ -40,22 +40,52 @@ function renderCards(data) {
         cardContainerChildren[i].classList.remove('card')
         cardContainerChildren[i].classList.add('active')
     }
-    getWinner(data.cards[0].value, data.cards[1].value)
+    // getWinner(data.cards[0].value, data.cards[1].value)
+    document.querySelector('.winner-banner').innerText = getWinner(data.cards[0].value, data.cards[1].value)
 }
 
-function getWinner(slot1Value, slot2Value) {
-    const cardValues = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "JACK", "QUEEN", "KING", "ACE"]
-    const slot1IndexValue = cardValues.indexOf(slot1Value)
-    const slot2IndexValue = cardValues.indexOf(slot2Value)
-    const winnerBannerEl = document.querySelector('.winner-banner')
+// function getWinner(slot1Value, slot2Value) {
+//     const cardValues = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "JACK", "QUEEN", "KING", "ACE"]
+//     const slot1IndexValue = cardValues.indexOf(slot1Value)
+//     const slot2IndexValue = cardValues.indexOf(slot2Value)
+//     const winnerBannerEl = document.querySelector('.winner-banner')
 
-    slot1IndexValue === slot2IndexValue ? winnerBannerEl.textContent = "War!"
-    : slot1IndexValue > slot2IndexValue ? winnerBannerEl.textContent = "Slot 1 Wins!"
-    : winnerBannerEl.textContent = "Slot 2 Wins"
+//     slot1IndexValue === slot2IndexValue ? winnerBannerEl.textContent = "War!"
+//     : slot1IndexValue > slot2IndexValue ? winnerBannerEl.textContent = "Slot 1 Wins!"
+//     : winnerBannerEl.textContent = "Slot 2 Wins!"
+// }
+
+
+const cardValue = {
+    "2": 0,
+    "3": 1,
+    "4": 2,
+    "5": 3,
+    "6": 4,
+    "7": 5,
+    "8": 6,
+    "9": 7,
+    "10": 8,
+    "JACK": 9,
+    "QUEEN": 10,
+    "KING": 11,
+    "ACE": 12,
 }
 
-
-
+function getWinner(slot1, slot2) {
+    
+    let slot1Value = cardValue[slot1]
+    let slot2Value = cardValue[slot2]
+    
+    if (slot1Value > slot2Value) {
+        return "Slot 1 Wins"
+    } else if (slot1Value === slot2Value) {
+        return "WAR!"
+    } else {
+        return "Slot 2 Wins!"
+    }
+    
+}
 
 
 
