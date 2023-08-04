@@ -27,7 +27,6 @@ function handleDrawClick() {
       return response.json();
     })
     .then((data) => {
-      console.log(data);
       renderCards(data);
     });
 }
@@ -45,6 +44,7 @@ function renderCards(data) {
     cardContainerChildren[i].classList.add("active");
   }
   getWinner(data.cards[0].value, data.cards[1].value);
+  fetchRemainingCards(data)
   // document.querySelector('.winner-banner').innerText = getWinner(data.cards[0].value, data.cards[1].value)
 }
 
@@ -74,6 +74,23 @@ function getWinner(slot1Value, slot2Value) {
     ? (winnerBannerEl.textContent = "Slot 1 Wins!")
     : (winnerBannerEl.textContent = "Slot 2 Wins!");
 }
+
+
+function fetchRemainingCards(data) {
+    document.querySelector('.remaining-cards').textContent = `Remaining Cards: ${data.remaining}`
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 // const cardValue = {
 //     "2": 0,
