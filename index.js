@@ -28,9 +28,8 @@ function handleDrawClick() {
     .then((data) => {
       renderCards(data);
       fetchRemainingCards(data)
-      if (data.remaining === 0) {
-        drawCardBtn.disabled = true
-      }
+      data.remaining === 10 ? drawCardBtn.style.color = "red" :
+      data.remaining === 0 ? drawCardBtn.disabled = true : null;
     });
 }
 
