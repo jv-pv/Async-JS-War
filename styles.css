@@ -92,6 +92,12 @@ button.draw {
     margin-block-start: 1rem;
 }
 
+button.draw:disabled {
+    opacity: 50%;
+    color: red;
+    transition: all 1s;
+}
+
 .cards-container {
     display: flex;
     flex-direction: column;
