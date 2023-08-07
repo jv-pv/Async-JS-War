@@ -1,11 +1,9 @@
 let deckId;
+const drawCardBtn = document.getElementById('draw-cards')
+const shuffleDeckBtn = document.getElementById('fetch-new-deck-btn')
 
-document
-  .getElementById("fetch-new-deck-btn")
-  .addEventListener("click", fetchDeck);
-document
-  .getElementById("draw-cards")
-  .addEventListener("click", handleDrawClick);
+shuffleDeckBtn.addEventListener("click", fetchDeck);
+drawCardBtn.addEventListener("click", handleDrawClick);
 
 function fetchDeck() {
   fetch(" https://apis.scrimba.com/deckofcards/api/deck/new/shuffle/")
@@ -29,6 +27,10 @@ function handleDrawClick() {
     })
     .then((data) => {
       renderCards(data);
+      fetchRemainingCards(data)
+      if (data.remaining === 0) {
+        drawCardBtn.disabled = true
+      }
     });
 }
 
