@@ -68,6 +68,10 @@ main {
     justify-content: space-between;
 }
 
+h2 {
+    margin: 1.2rem;
+}
+
 button {
     width: 100%;
     background-color: yellow;
@@ -95,7 +99,7 @@ button.draw {
 button.draw:disabled {
     opacity: 50%;
     color: red;
-    cursor: unset;
+    cursor: not-allowed;
     transition: all 1s;
 }
 
@@ -108,38 +112,31 @@ button.draw:disabled {
     margin: 1rem;
 }
 
-.cards-container img {
-    width: 100%;
-    min-width: 10%;
+.cards-container h3 {
+    color: var(--white);
+    margin-bottom: 1.2rem;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .card {
-    width: 100%;
-    height: 100%;
-    max-width: 14rem;
-    aspect-ratio: 5/7;
+    height: 140px;
+    width: calc(150px * 5 / 7);
     border: 5px solid var(--white);
     border-radius: 15px;
-}
-
-.card.active {
-    width: 100%;
-    height: fit-content;
-    max-width: 14rem;
-    border: 5px solid var(--white);
-    border-radius: 15px;
+    transition: all 500ms;
 }
 
 .cards-container img {
     width: 100%;
     max-width: 14rem;
-    border: 5px solid var(--white);
     border-radius: 15px;
     padding: 0.5rem;
-}
-
-.cards-container h2 {
-    color: var(--white);
 }
 
 .winner-banner {
@@ -158,4 +155,29 @@ button.draw:disabled {
     font-size: 1.1rem;
     color: var(--white);
     margin: 0 1em;
+}
+
+
+@media screen and (min-width: 600px) {
+
+    .cards-container {
+        flex-direction: row;
+        gap: 10rem;
+    }
+
+
+    .card {
+        height: 200px;
+        width: calc(210px * 5 / 7);
+        border: 5px solid var(--white);
+        border-radius: 15px;
+        transition: all 500ms;
+    }
+}
+
+@media screen and (min-width: 700px) {
+    .card {
+        height: 250px;
+        width: calc(260px * 5/7);
+    }
 }
