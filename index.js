@@ -1,6 +1,7 @@
 let deckId;
 const drawCardBtn = document.getElementById('draw-cards')
 const shuffleDeckBtn = document.getElementById('fetch-new-deck-btn')
+const winnerBanner = document.querySelector('.winner-banner')
 let computerScore = 0
 let playerScore = 0
 
@@ -16,7 +17,8 @@ function fetchDeck() {
     .then((data) => {
       deckId = data.deck_id;
       fetchRemainingCards(data);
-    });
+    })
+    .catch(err, console.log(err));
 }
 
 function handleDrawClick() {
@@ -32,7 +34,19 @@ function handleDrawClick() {
       fetchRemainingCards(data)
       data.remaining === 10 ? drawCardBtn.style.color = "red" :
       data.remaining === 0 ? drawCardBtn.disabled = true : null;
-    });
+
+      if (data.remaining === 0) {
+        if (playerScore > computerScore) {
+          winnerBanner.innerHTML = "You Win!!!"
+        } else if (playerScore === computerScore) {
+          winnerBanner.innerText = "Draw!"
+        } else {
+          winnerBanner.innerText = "Computer Wins :("
+        }
+      }
+
+    })
+    .catch(err, console.log(err));
 }
 
 function renderCards(data) {
@@ -47,7 +61,7 @@ function renderCards(data) {
   <img src="${data.cards[1].image}">
   `
 
-  document.querySelector(".winner-banner").innerText = getWinner(
+  winnerBanner.innerText = getWinner(
     data.cards[0].value,
     data.cards[1].value
   );
