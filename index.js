@@ -9,7 +9,7 @@ shuffleDeckBtn.addEventListener("click", fetchDeck);
 drawCardBtn.addEventListener("click", handleDrawClick);
 
 function fetchDeck() {
-  fetch(" https://apis.scrimba.com/deckofcards/api/deck/new/shuffle/")
+  fetch("https://apis.scrimba.com/deckofcards/api/deck/new/shuffle/")
     .then((response) => {
       if (!response.ok) throw new Error("Network response not ok");
       return response.json();
@@ -105,3 +105,15 @@ function getWinner(slot1, slot2) {
     return "You Win!";
   }
 }
+
+// const cardValues = [2,3,4,5,6,7,8,9,10,JACK, QUEEN, KING, ACE]
+
+// function getWinner(slot1, slot2) {
+//   let slot1Index = cardValues.indexOf(slot1)
+//   let slot2Index = cardValues.indexOf(slot2)
+
+//   console.log(slot1Index)
+//   console.log(slot2Index)
+// }
+
+
