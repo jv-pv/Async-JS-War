@@ -155,6 +155,8 @@ button.draw:disabled {
     font-size: 1.1rem;
     color: var(--white);
     margin: 0 1em;
+    opacity: 0;
+    transition: all 1s;
 }
 
 
