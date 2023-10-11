@@ -2,6 +2,7 @@ let deckId;
 const drawCardBtn = document.getElementById('draw-cards')
 const shuffleDeckBtn = document.getElementById('fetch-new-deck-btn')
 const winnerBanner = document.querySelector('.winner-banner')
+const remainingCards = document.querySelector('.remaining-cards')
 let computerScore = 0
 let playerScore = 0
 
@@ -53,6 +54,8 @@ function renderCards(data) {
   const slot1WrapperChild = document.querySelector('.slot1').children
   const slot2WrapperChild = document.querySelector('.slot2').children
 
+  console.log(slot1WrapperChild)
+
   slot1WrapperChild[1].innerHTML = `
   <img src="${data.cards[0].image}">
   `
@@ -68,9 +71,17 @@ function renderCards(data) {
 }
 
 function fetchRemainingCards(data) {
-  document.querySelector(
-    ".remaining-cards"
-  ).textContent = `Remaining Cards: ${data.remaining}`;
+  if (deckId) {
+    remainingCards.textContent = `Remaining Cards: ${data.remaining}`;
+    remainingCards.style.opacity = "100%"
+
+    if (data.remaining < 6) {
+      remainingCards.style.color = "red"
+    } else if (data.remaining < 16) {
+      remainingCards.style.color = "orangered"
+    }
+  }
+
 }
 
 const cardValue = {
