@@ -1,10 +1,10 @@
 let deckId;
-const drawCardBtn = document.getElementById('draw-cards')
-const shuffleDeckBtn = document.getElementById('fetch-new-deck-btn')
-const winnerBanner = document.querySelector('.winner-banner')
-const remainingCards = document.querySelector('.remaining-cards')
-let computerScore = 0
-let playerScore = 0
+const drawCardBtn = document.querySelector(".draw");
+const shuffleDeckBtn = document.querySelector(".new-deck");
+const winnerBanner = document.querySelector(".winner-banner");
+const remainingCards = document.querySelector(".remaining-cards");
+let computerScore = 0;
+let playerScore = 0;
 
 shuffleDeckBtn.addEventListener("click", fetchDeck);
 drawCardBtn.addEventListener("click", handleDrawClick);
@@ -32,56 +32,56 @@ function handleDrawClick() {
     })
     .then((data) => {
       renderCards(data);
-      fetchRemainingCards(data)
-      data.remaining === 10 ? drawCardBtn.style.color = "red" :
-      data.remaining === 0 ? drawCardBtn.disabled = true : null;
+      fetchRemainingCards(data);
+
+      data.remaining === 10
+        ? (drawCardBtn.style.color = "red")
+        : data.remaining === 0
+        ? (drawCardBtn.disabled = true)
+        : null;
 
       if (data.remaining === 0) {
         if (playerScore > computerScore) {
-          winnerBanner.innerHTML = "You Win!!!"
+          winnerBanner.innerHTML = "You Win!!!";
         } else if (playerScore === computerScore) {
-          winnerBanner.innerText = "Draw!"
+          winnerBanner.innerText = "Draw!";
         } else {
-          winnerBanner.innerText = "Computer Wins :("
+          winnerBanner.innerText = "Computer Wins :(";
         }
       }
-
     })
     .catch(err, console.log(err));
 }
 
 function renderCards(data) {
-  const slot1WrapperChild = document.querySelector('.slot1').children
-  const slot2WrapperChild = document.querySelector('.slot2').children
+  const slot1WrapperChild = document.querySelector(".slot1").children;
+  const slot2WrapperChild = document.querySelector(".slot2").children;
 
-  console.log(slot1WrapperChild)
+  console.log(slot1WrapperChild);
 
   slot1WrapperChild[1].innerHTML = `
   <img src="${data.cards[0].image}">
-  `
+  `;
 
   slot2WrapperChild[1].innerHTML = `
   <img src="${data.cards[1].image}">
-  `
+  `;
 
-  winnerBanner.innerText = getWinner(
-    data.cards[0].value,
-    data.cards[1].value
-  );
+  winnerBanner.innerText = getWinner(data.cards[0].value, data.cards[1].value);
 }
 
 function fetchRemainingCards(data) {
   if (deckId) {
     remainingCards.textContent = `Remaining Cards: ${data.remaining}`;
-    remainingCards.style.opacity = "100%"
+    remainingCards.style.opacity = "1";
+    drawCardBtn.style.opacity = "1";
 
     if (data.remaining < 6) {
-      remainingCards.style.color = "red"
+      remainingCards.style.color = "red";
     } else if (data.remaining < 16) {
-      remainingCards.style.color = "orangered"
+      remainingCards.style.color = "orangered";
     }
   }
-
 }
 
 const cardValue = {
@@ -105,14 +105,16 @@ function getWinner(slot1, slot2) {
   let slot2Value = cardValue[slot2];
 
   if (slot1Value > slot2Value) {
-    computerScore++
-    document.querySelector('.slot1 h3').innerText = `Computer: ${computerScore}`
+    computerScore++;
+    document.querySelector(
+      ".slot1 h3"
+    ).innerText = `Computer: ${computerScore}`;
     return "Computer Wins";
   } else if (slot1Value === slot2Value) {
     return "WAR!";
   } else {
-    playerScore++
-    document.querySelector('.slot2 h3').innerText = `You: ${playerScore}`
+    playerScore++;
+    document.querySelector(".slot2 h3").innerText = `You: ${playerScore}`;
     return "You Win!";
   }
 }
@@ -126,5 +128,3 @@ function getWinner(slot1, slot2) {
 //   console.log(slot1Index)
 //   console.log(slot2Index)
 // }
-
-
